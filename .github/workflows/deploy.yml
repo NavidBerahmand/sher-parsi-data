@@ -1,0 +1,19 @@
+# Rebuild sorayesh.com on Cloudflare Pages when the poem data here changes.
+# The site is built from NavidBerahmand/sher-parsi, which copies this repository in (tools/cf-build.sh),
+# so a push here does not start a build by itself. CF_DEPLOY_HOOK is the Pages deploy hook URL (repo secret).
+name: Deploy sorayesh.com
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Cloudflare Pages build
+        env:
+          HOOK: ${{ secrets.CF_DEPLOY_HOOK }}
+        run: |
+          if [ -z "$HOOK" ]; then echo "CF_DEPLOY_HOOK secret is not set"; exit 1; fi
+          curl -fsS -X POST "$HOOK" > /dev/null
+          echo "Cloudflare Pages build started"

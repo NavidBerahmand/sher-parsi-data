@@ -1,8 +1,8 @@
 # sher-parsi-data
 
-Poem data for [«شعر پارسی»](https://github.com/NavidBerahmand/sher-parsi): the 202 Ganjoor poets that are not bundled in the main repository.
+Poem data for [«سُرایش»](https://github.com/NavidBerahmand/sher-parsi) (sorayesh.com): the 202 Ganjoor poets that are not bundled in the main repository.
 
-The two repositories together are larger than the 1 GB a single GitHub Pages site allows, so this one is published as its own Pages site, at https://navidberahmand.github.io/sher-parsi-data/. The app reads it from `../sher-parsi-data/data/`, which works because both sites share the same host.
+The split dates from GitHub Pages, where both together passed the 1 GB limit. The site is now served by Cloudflare Pages at https://sorayesh.com: its build (`tools/cf-build.sh` in sher-parsi) copies this repository to `/sher-parsi-data/`, where the app reads it from `../sher-parsi-data/data/`. A push to `main` here starts a new Cloudflare build through `.github/workflows/deploy.yml` (deploy hook in the `CF_DEPLOY_HOOK` secret).
 
 ## Contents
 
